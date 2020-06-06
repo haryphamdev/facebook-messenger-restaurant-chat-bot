@@ -111,6 +111,7 @@ let sendMainMenu = (sender_psid) => {
 
                             {
                                 "title": "Banquet Rooms",
+                                "subtitle": "My restaurant 's accommodates up to 300 seated guests and similar at cocktail receptions",
                                 "image_url": " https://bit.ly/imageShowRooms",
                                 "buttons": [
                                     {
@@ -180,6 +181,7 @@ let sendLunchMenu = (sender_psid) => {
                                     }
                                 ],
                             },
+
                             {
                                 "title": "Skeens Classics",
                                 "subtitle": "and Dry-aged on Premise",
@@ -192,6 +194,7 @@ let sendLunchMenu = (sender_psid) => {
                                     }
                                 ],
                             },
+
                             {
                                 "title": "Go back",
                                 "image_url": " https://bit.ly/imageToSend",
@@ -203,8 +206,6 @@ let sendLunchMenu = (sender_psid) => {
                                     }
                                 ],
                             }
-
-
                         ]
                     }
                 }
@@ -263,7 +264,6 @@ let sendDinnerMenu = (sender_psid) => {
                                 ],
                             }
 
-
                         ]
                     }
                 }
@@ -321,6 +321,7 @@ let sendPubMenu = (sender_psid) => {
                                     }
                                 ],
                             },
+
                             {
                                 "title": "Go back",
                                 "image_url": " https://bit.ly/imageToSend",
@@ -332,8 +333,6 @@ let sendPubMenu = (sender_psid) => {
                                     }
                                 ],
                             }
-
-
                         ]
                     }
                 }
