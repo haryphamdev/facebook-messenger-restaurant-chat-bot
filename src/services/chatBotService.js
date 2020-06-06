@@ -147,7 +147,7 @@ let sendLunchMenu = (sender_psid) => {
                         "elements": [
                             {
                                 "title": "Appetizers",
-                                "image_url": "https://bit.ly/imageMenu",
+                                "image_url": "https://bit.ly/imageAppetizer",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -159,7 +159,7 @@ let sendLunchMenu = (sender_psid) => {
 
                             {
                                 "title": "Entree Salad",
-                                "image_url": " https://bit.ly/imageOpening",
+                                "image_url": "https://bit.ly/imageSalad",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -171,7 +171,7 @@ let sendLunchMenu = (sender_psid) => {
 
                             {
                                 "title": "Fish and Shell Fish",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": "https://bit.ly/imageFish",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -183,7 +183,7 @@ let sendLunchMenu = (sender_psid) => {
                             {
                                 "title": "Skeens Classics",
                                 "subtitle": "and Dry-aged on Premise",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": "https://bit.ly/imageClassics",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -275,7 +275,7 @@ let sendDinnerMenu = (sender_psid) => {
                             },
                             {
                                 "title": "Go back",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": " https://bit.ly/imageToSend",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -298,6 +298,7 @@ let sendDinnerMenu = (sender_psid) => {
         }
     });
 };
+
 let sendPubMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -356,7 +357,7 @@ let sendPubMenu = (sender_psid) => {
                             },
                             {
                                 "title": "Go back",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": " https://bit.ly/imageToSend",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -379,7 +380,6 @@ let sendPubMenu = (sender_psid) => {
         }
     });
 };
-
 
 let sendMessage = (sender_psid, response) => {
     let request_body = {

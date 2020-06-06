@@ -136,7 +136,7 @@ let handlePostback = async (sender_psid, received_postback)=> {
         case "LUNCH_MENU":
             await chatBotService.sendLunchMenu(sender_psid);
             break;
-        case "DINNER MENU":
+        case "DINNER_MENU":
             await chatBotService.sendDinnerMenu(sender_psid);
             break;
         case "PUB_MENU":
