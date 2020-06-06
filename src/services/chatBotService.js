@@ -98,9 +98,7 @@ let sendMainMenu = (sender_psid) => {
 
                             {
                                 "title": "Hours",
-                                "subtitle": ` MON-FRI 10:00AM - 11:00PM
-                                SAT 5PM - 10:00PM
-                                SUN 5PM - 9:00PM
+                                "subtitle": ` MON-FRI 10:00AM - 11:00PM     SAT 5PM - 10:00PM       SUN 5PM - 9:00PM
                                 `,
                                 "image_url": "https://bit.ly/imageToSend",
                                 "buttons": [
