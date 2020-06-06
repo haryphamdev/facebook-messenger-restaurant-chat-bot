@@ -28,67 +28,85 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
         try{
             let response_first = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
             let response_second = {
+                // "attachment": {
+                //     "type": "template",
+                //     "payload": {
+                //         "template_type": "list",
+                //         "top_element_style": "compact",
+                //         "elements": [
+                //             {
+                //                 "title": "Classic T-Shirt Collection",
+                //                 "subtitle": "See all our colors",
+                //                 "image_url": "https://bit.ly/imageToSend",
+                //                 "buttons": [
+                //                     {
+                //                         "title": "View",
+                //                         "type": "web_url",
+                //                         "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
+                //                         "messenger_extensions": true,
+                //                         "webview_height_ratio": "tall",
+                //                         "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
+                //                     }
+                //                 ]
+                //             },
+                //             {
+                //                 "title": "Classic White T-Shirt",
+                //                 "subtitle": "See all our colors",
+                //                 "default_action": {
+                //                     "type": "web_url",
+                //                     "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
+                //                     "messenger_extensions": false,
+                //                     "webview_height_ratio": "tall"
+                //                 }
+                //             },
+                //             {
+                //                 "title": "Classic Blue T-Shirt",
+                //                 "image_url": "https://bit.ly/imageToSend",
+                //                 "subtitle": "100% Cotton, 200% Comfortable",
+                //                 "default_action": {
+                //                     "type": "web_url",
+                //                     "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
+                //                     "messenger_extensions": true,
+                //                     "webview_height_ratio": "tall",
+                //                     "fallback_url": "hhttps://restaurant-bot-haryphamdev.herokuapp.com/"
+                //                 },
+                //                 "buttons": [
+                //                     {
+                //                         "title": "Shop Now",
+                //                         "type": "web_url",
+                //                         "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
+                //                         "messenger_extensions": true,
+                //                         "webview_height_ratio": "tall",
+                //                         "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
+                //                     }
+                //                 ]
+                //             }
+                //         ],
+                //         "buttons": [
+                //             {
+                //                 "title": "View More",
+                //                 "type": "postback",
+                //                 "payload": "payload"
+                //             }
+                //         ]
+                //     }
+                // }
+
                 "attachment": {
                     "type": "template",
                     "payload": {
-                        "template_type": "list",
-                        "top_element_style": "compact",
-                        "elements": [
-                            {
-                                "title": "Classic T-Shirt Collection",
-                                "subtitle": "See all our colors",
-                                "image_url": "https://bit.ly/imageToSend",
-                                "buttons": [
-                                    {
-                                        "title": "View",
-                                        "type": "web_url",
-                                        "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
-                                        "messenger_extensions": true,
-                                        "webview_height_ratio": "tall",
-                                        "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
-                                    }
-                                ]
-                            },
-                            {
-                                "title": "Classic White T-Shirt",
-                                "subtitle": "See all our colors",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
-                                    "messenger_extensions": false,
-                                    "webview_height_ratio": "tall"
+                        "template_type": "generic",
+                        "elements": [ {
+                            "title": "HaryPhamDev 's restaurant",
+                            "image_url": "https://bit.ly/imageToSend",
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Main menu",
+                                    "payload": "MENU",
                                 }
-                            },
-                            {
-                                "title": "Classic Blue T-Shirt",
-                                "image_url": "https://bit.ly/imageToSend",
-                                "subtitle": "100% Cotton, 200% Comfortable",
-                                "default_action": {
-                                    "type": "web_url",
-                                    "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
-                                    "messenger_extensions": true,
-                                    "webview_height_ratio": "tall",
-                                    "fallback_url": "hhttps://restaurant-bot-haryphamdev.herokuapp.com/"
-                                },
-                                "buttons": [
-                                    {
-                                        "title": "Shop Now",
-                                        "type": "web_url",
-                                        "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
-                                        "messenger_extensions": true,
-                                        "webview_height_ratio": "tall",
-                                        "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
-                                    }
-                                ]
-                            }
-                        ],
-                        "buttons": [
-                            {
-                                "title": "View More",
-                                "type": "postback",
-                                "payload": "payload"
-                            }
-                        ]
+                            ],
+                        } ]
                     }
                 }
             };
