@@ -1,5 +1,6 @@
 require("dotenv").config();
 import request from "request";
+import chatBotService from "../services/chatBotService";
 
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -115,16 +116,16 @@ function handleMessage(sender_psid, received_message) {
 }
 
 // Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
+let handlePostback = async (sender_psid, received_postback)=> {
     let response;
     // Get the payload for the postback
     let payload = received_postback.payload;
     // Set the response based on the postback payload
     switch (payload) {
         case "GET_STARTED":
-            //get username
-            getFacebookUsername(sender_psid);
-            response = {"text": "Welcome ABC_NAME to HaryPhamDev's Restaurant"};
+            //get facebook username
+            let username = await chatBotService.getFacebookUsername(sender_psid);
+            response = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
             break;
         case "no":
             response = {};
@@ -137,7 +138,7 @@ function handlePostback(sender_psid, received_postback) {
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
-}
+};
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
@@ -164,25 +165,6 @@ function callSendAPI(sender_psid, response) {
     });
 }
 
-let getFacebookUsername = (sender_psid) =>{
-    // Send the HTTP request to the Messenger Platform
-    let uri = `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`;
-    request({
-        "uri": uri,
-        "method": "GET",
-    }, (err, res, body) => {
-        console.log("call here");
-        console.log(err);
-        console.log(res);
-        console.log(body)
-        if (!err) {
-            console.log('message sent!');
-            console.log(res);
-        } else {
-            console.error("Unable to send message:" + err);
-        }
-    });
-};
 module.exports = {
     postWebhook: postWebhook,
     getWebhook: getWebhook
