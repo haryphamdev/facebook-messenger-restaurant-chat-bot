@@ -76,7 +76,7 @@ let sendMainMenu = (sender_psid) => {
                             {
                                 "title": "Our menus",
                                 "subtitle": "We are pleased to offer you a wide-range of menu for lunch or dinner.",
-                                "image_url": "https://bit.ly/imageToSend",
+                                "image_url": "https://bit.ly/imageMenu",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -99,7 +99,7 @@ let sendMainMenu = (sender_psid) => {
                             {
                                 "title": "Hours",
                                 "subtitle": "MON-FRI 10AM - 11PM  | SAT 5PM - 10PM | SUN 5PM - 9PM",
-                                "image_url": "https://bit.ly/imageToSend",
+                                "image_url": " https://bit.ly/imageOpening",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -111,7 +111,7 @@ let sendMainMenu = (sender_psid) => {
 
                             {
                                 "title": "Banquet Rooms",
-                                "image_url": "https://bit.ly/imageToSend",
+                                "image_url": " https://bit.ly/imageShowRooms",
                                 "buttons": [
                                     {
                                         "type": "postback",
