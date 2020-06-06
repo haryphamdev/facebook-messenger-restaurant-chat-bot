@@ -1,4 +1,5 @@
 import request from "request";
+
 require("dotenv").config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -25,8 +26,8 @@ let getFacebookUsername = (sender_psid) => {
 
 let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
     return new Promise(async (resolve, reject) => {
-        try{
-            let response_first = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
+        try {
+            let response_first = { "text": `Welcome ${username} to HaryPhamDev's Restaurant` };
             let response_second = {
                 "attachment": {
                     "type": "template",
@@ -34,17 +35,17 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                         "template_type": "generic",
                         "elements": [
                             {
-                            "title": "HaryPhamDev 's restaurant",
+                                "title": "HaryPhamDev 's restaurant",
                                 "subtitle": "My restaurant is legendary, its classic wine collection equally so.",
-                            "image_url": "https://bit.ly/imageToSend",
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Show Main Menu",
-                                    "payload": "MAIN_MENU",
-                                }
-                            ],
-                        } ]
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW MAIN MENU",
+                                        "payload": "MAIN_MENU",
+                                    }
+                                ],
+                            } ]
                     }
                 }
             };
@@ -56,7 +57,7 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
             await sendMessage(sender_psid, response_second);
 
             resolve("done!")
-        }catch (e) {
+        } catch (e) {
             reject(e);
         }
 
@@ -65,7 +66,7 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
 
 let sendMainMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
-        try{
+        try {
             let response = {
                 "attachment": {
                     "type": "template",
@@ -98,8 +99,8 @@ let sendMainMenu = (sender_psid) => {
                             {
                                 "title": "Hours",
                                 "subtitle": ` MON-FRI 10:00AM - 11:00PM
-                                              SAT 5PM - 10:00PM
-                                              SUN 5PM - 9:00PM
+                                SAT 5PM - 10:00PM
+                                SUN 5PM - 9:00PM
                                 `,
                                 "image_url": "https://bit.ly/imageToSend",
                                 "buttons": [
@@ -124,14 +125,14 @@ let sendMainMenu = (sender_psid) => {
                             }
 
 
-                            ]
+                        ]
                     }
                 }
             };
 
             //send a welcome message
             await sendMessage(sender_psid, response);
-        }catch (e) {
+        } catch (e) {
             reject(e);
         }
     });
