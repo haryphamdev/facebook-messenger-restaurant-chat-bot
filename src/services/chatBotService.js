@@ -146,7 +146,6 @@ let sendLunchMenu = (sender_psid) => {
                     "payload": {
                         "template_type": "generic",
                         "elements": [
-
                             {
                                 "title": "Appetizers",
                                 "image_url": "https://bit.ly/imageAppetizer",
@@ -346,6 +345,70 @@ let sendPubMenu = (sender_psid) => {
     });
 };
 
+let sendAppetizer = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Little Neck Clams on the Half Shell",
+                                "subtitle": "Dozen - $20.00",
+                                "image_url": "https://bit.ly/imageAppetizer",
+                            },
+
+                            {
+                                "title": "Fresh Oysters",
+                                "subtitle": "1/2 Dozen - $21.00 | Dozen - $40.00",
+                                "image_url": "https://bit.ly/imageSalad",
+                            },
+
+                            {
+                                "title": "Lobster Salad",
+                                "subtitle": "Half Lobster with Avocado and Grapefruit",
+                                "image_url": "https://bit.ly/imageFish",
+                            },
+
+                            {
+                                "title": "Go back",
+                                "image_url": " https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW LUNCH MENU",
+                                        "payload": "BACK_TO_LUNCH_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "BACK TO MAIN MENU",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let goBackToMainMenu = (sender_psid) => {
+    sendMainMenu(sender_psid);
+};
+
+let goBackToLunchMenu = (sender_psid) => {
+    sendLunchMenu(sender_psid);
+};
+
 let sendMessage = (sender_psid, response) => {
     let request_body = {
         "recipient": {
@@ -377,5 +440,8 @@ module.exports = {
     sendMainMenu: sendMainMenu,
     sendLunchMenu: sendLunchMenu,
     sendDinnerMenu: sendDinnerMenu,
-    sendPubMenu: sendPubMenu
+    sendPubMenu: sendPubMenu,
+    sendAppetizer: sendAppetizer,
+    goBackToMainMenu: goBackToMainMenu,
+    goBackToLunchMenu: goBackToLunchMenu
 };

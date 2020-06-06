@@ -125,7 +125,6 @@ let handlePostback = async (sender_psid, received_postback)=> {
         case "GET_STARTED":
             //get facebook username
             let username = await chatBotService.getFacebookUsername(sender_psid);
-
             //send welcome response to users
             await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
             break;
@@ -143,10 +142,17 @@ let handlePostback = async (sender_psid, received_postback)=> {
             await chatBotService.sendPubMenu(sender_psid);
             break;
         case "RESERVE_TABLE":
-            response = {};
             break;
         case "SHOW_ROOMS":
-
+            break;
+        case "SHOW_APPETIZERS":
+            await chatBotService.sendAppetizer(sender_psid);
+            break;
+        case "BACK_TO_MAIN_MENU":
+            await chatBotService.goBackToMainMenu(sender_psid);
+            break;
+        case "BACK_TO_LUNCH_MENU":
+            await chatBotService.goBackToLunchMenu(sender_psid);
             break;
 
         case "yes":
