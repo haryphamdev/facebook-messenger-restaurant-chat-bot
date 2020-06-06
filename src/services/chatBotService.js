@@ -409,6 +409,18 @@ let goBackToLunchMenu = (sender_psid) => {
     sendLunchMenu(sender_psid);
 };
 
+let handleReserveTable = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let username = await getFacebookUsername(sender_psid);
+            let response = { text: `Hi ${username}, What time and date you would like to reserve a table ?`};
+            await sendMessage(sender_psid, response);
+        }catch (e) {
+            reject(e);
+        }
+    });
+};
+
 let sendMessage = (sender_psid, response) => {
     let request_body = {
         "recipient": {
@@ -443,5 +455,6 @@ module.exports = {
     sendPubMenu: sendPubMenu,
     sendAppetizer: sendAppetizer,
     goBackToMainMenu: goBackToMainMenu,
-    goBackToLunchMenu: goBackToLunchMenu
+    goBackToLunchMenu: goBackToLunchMenu,
+    handleReserveTable: handleReserveTable
 };
