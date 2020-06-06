@@ -194,7 +194,7 @@ let sendLunchMenu = (sender_psid) => {
                             },
                             {
                                 "title": "Go back",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": " https://bit.ly/imageToSend",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -217,6 +217,7 @@ let sendLunchMenu = (sender_psid) => {
         }
     });
 };
+
 let sendDinnerMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -250,29 +251,6 @@ let sendDinnerMenu = (sender_psid) => {
                                 ],
                             },
 
-                            {
-                                "title": "Fish and Shell Fish",
-                                "image_url": " https://bit.ly/imageShowRooms",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW FISH",
-                                        "payload": "SHOW_FISH",
-                                    }
-                                ],
-                            },
-                            {
-                                "title": "Skeens Classics",
-                                "subtitle": "and Dry-aged on Premise",
-                                "image_url": " https://bit.ly/imageShowRooms",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW CLASSICS",
-                                        "payload": "SHOW_CLASSICS",
-                                    }
-                                ],
-                            },
                             {
                                 "title": "Go back",
                                 "image_url": " https://bit.ly/imageToSend",
@@ -340,18 +318,6 @@ let sendPubMenu = (sender_psid) => {
                                         "type": "postback",
                                         "title": "SHOW FISH",
                                         "payload": "SHOW_FISH",
-                                    }
-                                ],
-                            },
-                            {
-                                "title": "Skeens Classics",
-                                "subtitle": "and Dry-aged on Premise",
-                                "image_url": " https://bit.ly/imageShowRooms",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW CLASSICS",
-                                        "payload": "SHOW_CLASSICS",
                                     }
                                 ],
                             },
