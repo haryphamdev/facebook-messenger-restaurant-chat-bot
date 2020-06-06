@@ -28,23 +28,6 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
         try{
             let response_first = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
             let response_second = {
-                // "attachment": {
-                //     "type": "template",
-                //     "payload": {
-                //         "template_type": "generic",
-                //         "elements": [ {
-                //             "title": "HaryPhamDev 's restaurant",
-                //             "image_url": "https://bit.ly/imageToSend",
-                //             "buttons": [
-                //                 {
-                //                     "type": "postback",
-                //                     "title": "Main menu",
-                //                     "payload": "MENU",
-                //                 }
-                //             ],
-                //         } ]
-                //     }
-                // }
                 "attachment": {
                     "type": "template",
                     "payload": {
