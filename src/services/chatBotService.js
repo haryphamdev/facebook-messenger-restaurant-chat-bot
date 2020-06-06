@@ -146,6 +146,7 @@ let sendLunchMenu = (sender_psid) => {
                     "payload": {
                         "template_type": "generic",
                         "elements": [
+
                             {
                                 "title": "Appetizers",
                                 "image_url": "https://bit.ly/imageAppetizer",
