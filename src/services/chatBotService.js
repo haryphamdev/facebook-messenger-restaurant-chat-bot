@@ -111,7 +111,7 @@ let sendMainMenu = (sender_psid) => {
 
                             {
                                 "title": "Banquet Rooms",
-                                "subtitle": "My restaurant 's accommodates up to 300 seated guests and similar at cocktail receptions",
+                                "subtitle": "Restaurant accommodates up to 300 seated guests and similar at cocktail receptions",
                                 "image_url": " https://bit.ly/imageShowRooms",
                                 "buttons": [
                                     {
@@ -231,7 +231,7 @@ let sendDinnerMenu = (sender_psid) => {
                         "elements": [
                             {
                                 "title": "Appetizers",
-                                "image_url": "https://bit.ly/imageMenu",
+                                "image_url": "https://bit.ly/imageAppetizer",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -243,7 +243,7 @@ let sendDinnerMenu = (sender_psid) => {
 
                             {
                                 "title": "Entree Salad",
-                                "image_url": " https://bit.ly/imageOpening",
+                                "image_url": " https://bit.ly/imageSalad",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -264,7 +264,6 @@ let sendDinnerMenu = (sender_psid) => {
                                     }
                                 ],
                             }
-
                         ]
                     }
                 }
@@ -289,7 +288,7 @@ let sendPubMenu = (sender_psid) => {
                         "elements": [
                             {
                                 "title": "Appetizers",
-                                "image_url": "https://bit.ly/imageMenu",
+                                "image_url": "https://bit.ly/imageAppetizer",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -301,7 +300,7 @@ let sendPubMenu = (sender_psid) => {
 
                             {
                                 "title": "Entree Salad",
-                                "image_url": " https://bit.ly/imageOpening",
+                                "image_url": " https://bit.ly/imageSalad",
                                 "buttons": [
                                     {
                                         "type": "postback",
@@ -313,7 +312,7 @@ let sendPubMenu = (sender_psid) => {
 
                             {
                                 "title": "Fish and Shell Fish",
-                                "image_url": " https://bit.ly/imageShowRooms",
+                                "image_url": " https://bit.ly/imageFish",
                                 "buttons": [
                                     {
                                         "type": "postback",
