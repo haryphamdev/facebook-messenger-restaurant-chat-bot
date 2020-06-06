@@ -171,6 +171,10 @@ let getFacebookUsername = (sender_psid) =>{
         "uri": uri,
         "method": "GET",
     }, (err, res, body) => {
+        console.log("call here");
+        console.log(err);
+        console.log(res);
+        console.log(body)
         if (!err) {
             console.log('message sent!');
             console.log(res);
