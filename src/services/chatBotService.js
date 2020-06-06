@@ -39,8 +39,8 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                             "buttons": [
                                 {
                                     "type": "postback",
-                                    "title": "Main menu",
-                                    "payload": "MENU",
+                                    "title": "SHOW MAIN MENU",
+                                    "payload": "MAIN_MENU",
                                 }
                             ],
                         } ]
@@ -60,6 +60,81 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
         }
 
     });
+};
+
+let sendMainMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Our menus",
+                                "subtitle": "We are pleased to offer you a wide-range of menu for lunch or dinner."
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "LUNCH MENU",
+                                        "payload": "LUNCH_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "DINNER MENU",
+                                        "payload": "DINNER_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "PUB MENU",
+                                        "payload": "PUB_MENU",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Hours",
+                                "subtitle": ` MON-FRI 10:00AM - 11:00PM
+                                              SAT 5PM - 10:00PM
+                                              SUN 5PM - 9:00PM
+                                `,
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "RESERVE A TABLE",
+                                        "payload": "RESERVE_TABLE",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Banquet Rooms",
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW ROOMS",
+                                        "payload": "SHOW_ROOMS",
+                                    }
+                                ],
+                            }
+
+
+                            ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        }catch (e) {
+            reject(e);
+        }
+    });
+
 };
 
 let sendMessage = (sender_psid, response) => {
@@ -89,5 +164,6 @@ let sendMessage = (sender_psid, response) => {
 
 module.exports = {
     getFacebookUsername: getFacebookUsername,
-    sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer
+    sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer,
+    sendMainMenu: sendMainMenu
 };
