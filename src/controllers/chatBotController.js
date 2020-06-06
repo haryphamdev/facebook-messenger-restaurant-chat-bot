@@ -3,6 +3,7 @@ import request from "request";
 
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
@@ -121,6 +122,8 @@ function handlePostback(sender_psid, received_postback) {
     // Set the response based on the postback payload
     switch (payload) {
         case "GET_STARTED":
+            //get username
+            getFacebookUsername(sender_psid);
             response = {"text": "Welcome ABC_NAME to HaryPhamDev's Restaurant"};
             break;
         case "no":
@@ -161,6 +164,21 @@ function callSendAPI(sender_psid, response) {
     });
 }
 
+let getFacebookUsername = (sender_psid) =>{
+    // Send the HTTP request to the Messenger Platform
+    let uri = `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`;
+    request({
+        "uri": uri,
+        "method": "GET",
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('message sent!');
+            console.log(res);
+        } else {
+            console.error("Unable to send message:" + err);
+        }
+    });
+};
 module.exports = {
     postWebhook: postWebhook,
     getWebhook: getWebhook
