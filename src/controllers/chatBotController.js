@@ -3,7 +3,7 @@ import request from "request";
 
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-let postWebhook = (req, res) =>{
+let postWebhook = (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
 
@@ -78,7 +78,7 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": `You sent the message: "${received_message.text}". Now send me an image!`
         }
-    }else if (received_message.attachments) {
+    } else if (received_message.attachments) {
 
         // Gets the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
@@ -87,7 +87,7 @@ function handleMessage(sender_psid, received_message) {
                 "type": "template",
                 "payload": {
                     "template_type": "generic",
-                    "elements": [{
+                    "elements": [ {
                         "title": "Is this the right picture?",
                         "subtitle": "Tap a button to answer.",
                         "image_url": attachment_url,
@@ -103,7 +103,7 @@ function handleMessage(sender_psid, received_message) {
                                 "payload": "no",
                             }
                         ],
-                    }]
+                    } ]
                 }
             }
         }
@@ -116,17 +116,21 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
-
     // Get the payload for the postback
     let payload = received_postback.payload;
-
     // Set the response based on the postback payload
-    if (payload === 'yes') {
-        response = { "text": "Thanks!" }
-    } else if (payload === 'no') {
-        response = { "text": "Oops, try sending another image." }
-    }else if(payload === "GET_STARTED"){
-        response = { "text": "Hi there" }
+    switch (payload) {
+        case "GET_STARTED":
+            response = {"text": "Welcome ABC_NAME to HaryPhamDev's Restaurant"};
+            break;
+        case "no":
+            response = {};
+            break;
+        case "yes":
+            response = {};
+            break;
+        default:
+            console.log("Something wrong with switch case payload");
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
@@ -145,7 +149,7 @@ function callSendAPI(sender_psid, response) {
     // Send the HTTP request to the Messenger Platform
     request({
         "uri": "https://graph.facebook.com/v6.0/me/messages",
-        "qs": { "access_token":  PAGE_ACCESS_TOKEN},
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
         "method": "POST",
         "json": request_body
     }, (err, res, body) => {
@@ -158,6 +162,6 @@ function callSendAPI(sender_psid, response) {
 }
 
 module.exports = {
-postWebhook: postWebhook,
-getWebhook: getWebhook
+    postWebhook: postWebhook,
+    getWebhook: getWebhook
 };
