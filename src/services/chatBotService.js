@@ -35,6 +35,7 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                         "elements": [
                             {
                             "title": "HaryPhamDev 's restaurant",
+                                "subtitle": "My restaurant is legendary, its classic wine collection equally so.",
                             "image_url": "https://bit.ly/imageToSend",
                             "buttons": [
                                 {
@@ -73,7 +74,7 @@ let sendMainMenu = (sender_psid) => {
                         "elements": [
                             {
                                 "title": "Our menus",
-                                "subtitle": "We are pleased to offer you a wide-range of menu for lunch or dinner."
+                                "subtitle": "We are pleased to offer you a wide-range of menu for lunch or dinner.",
                                 "image_url": "https://bit.ly/imageToSend",
                                 "buttons": [
                                     {
