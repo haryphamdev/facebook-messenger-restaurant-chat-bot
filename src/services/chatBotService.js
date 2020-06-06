@@ -136,6 +136,251 @@ let sendMainMenu = (sender_psid) => {
 
 };
 
+let sendLunchMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Appetizers",
+                                "image_url": "https://bit.ly/imageMenu",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW APPETIZERS",
+                                        "payload": "SHOW_APPETIZERS",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Entree Salad",
+                                "image_url": " https://bit.ly/imageOpening",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW ENTREE SALAD",
+                                        "payload": "SHOW_ENTREE_SALAD",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Fish and Shell Fish",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW FISH",
+                                        "payload": "SHOW_FISH",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Skeens Classics",
+                                "subtitle": "and Dry-aged on Premise",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW CLASSICS",
+                                        "payload": "SHOW_CLASSICS",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Go back",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "BACK TO MAIN MENU",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    }
+                                ],
+                            }
+
+
+                        ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+let sendDinnerMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Appetizers",
+                                "image_url": "https://bit.ly/imageMenu",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW APPETIZERS",
+                                        "payload": "SHOW_APPETIZERS",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Entree Salad",
+                                "image_url": " https://bit.ly/imageOpening",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW ENTREE SALAD",
+                                        "payload": "SHOW_ENTREE_SALAD",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Fish and Shell Fish",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW FISH",
+                                        "payload": "SHOW_FISH",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Skeens Classics",
+                                "subtitle": "and Dry-aged on Premise",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW CLASSICS",
+                                        "payload": "SHOW_CLASSICS",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Go back",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "BACK TO MAIN MENU",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    }
+                                ],
+                            }
+
+
+                        ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+let sendPubMenu = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Appetizers",
+                                "image_url": "https://bit.ly/imageMenu",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW APPETIZERS",
+                                        "payload": "SHOW_APPETIZERS",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Entree Salad",
+                                "image_url": " https://bit.ly/imageOpening",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW ENTREE SALAD",
+                                        "payload": "SHOW_ENTREE_SALAD",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Fish and Shell Fish",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW FISH",
+                                        "payload": "SHOW_FISH",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Skeens Classics",
+                                "subtitle": "and Dry-aged on Premise",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW CLASSICS",
+                                        "payload": "SHOW_CLASSICS",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "Go back",
+                                "image_url": " https://bit.ly/imageShowRooms",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "BACK TO MAIN MENU",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    }
+                                ],
+                            }
+
+
+                        ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+
 let sendMessage = (sender_psid, response) => {
     let request_body = {
         "recipient": {
@@ -164,5 +409,8 @@ let sendMessage = (sender_psid, response) => {
 module.exports = {
     getFacebookUsername: getFacebookUsername,
     sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer,
-    sendMainMenu: sendMainMenu
+    sendMainMenu: sendMainMenu,
+    sendLunchMenu: sendLunchMenu,
+    sendDinnerMenu: sendDinnerMenu,
+    sendPubMenu: sendPubMenu
 };

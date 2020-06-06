@@ -133,8 +133,29 @@ let handlePostback = async (sender_psid, received_postback)=> {
            //send main menu to users
             await chatBotService.sendMainMenu(sender_psid);
             break;
-        case "yes":
+        case "LUNCH_MENU":
+            await chatBotService.sendLunchMenu(sender_psid);
+            break;
+        case "DINNER MENU":
+            await chatBotService.sendDinnerMenu(sender_psid);
+            break;
+        case "PUB_MENU":
+            await chatBotService.sendPubMenu(sender_psid);
+            break;
+        case "RESERVE_TABLE":
             response = {};
+            break;
+        case "SHOW_ROOMS":
+
+            break;
+
+        case "yes":
+            response = { text: "Thank you!"};
+            callSendAPI(sender_psid, response);
+            break;
+        case "no":
+            response = {text: "Please try another image."};
+            callSendAPI(sender_psid, response);
             break;
         default:
             console.log("Something wrong with switch case payload");
