@@ -40,7 +40,7 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                             "buttons": [
                                 {
                                     "type": "postback",
-                                    "title": "SHOW MAIN MENU",
+                                    "title": "Show Main Menu",
                                     "payload": "MAIN_MENU",
                                 }
                             ],
