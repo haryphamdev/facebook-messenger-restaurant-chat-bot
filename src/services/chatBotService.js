@@ -96,7 +96,8 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                     "type": "template",
                     "payload": {
                         "template_type": "generic",
-                        "elements": [ {
+                        "elements": [
+                            {
                             "title": "HaryPhamDev 's restaurant",
                             "image_url": "https://bit.ly/imageToSend",
                             "buttons": [
@@ -106,7 +107,31 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                     "payload": "MENU",
                                 }
                             ],
-                        } ]
+                        },
+                            {
+                                "title": "HaryPhamDev 's restaurant",
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "Main menu",
+                                        "payload": "MENU",
+                                    }
+                                ],
+                            },
+                            {
+                                "title": "HaryPhamDev 's restaurant",
+                                "image_url": "https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "Main menu",
+                                        "payload": "MENU",
+                                    }
+                                ],
+                            },
+
+                        ]
                     }
                 }
             };
