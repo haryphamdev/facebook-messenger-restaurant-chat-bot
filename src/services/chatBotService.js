@@ -1,4 +1,7 @@
 import request from "request";
+require("dotenv").config();
+
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let getFacebookUsername = (sender_psid) => {
     return new Promise((resolve, reject) => {
