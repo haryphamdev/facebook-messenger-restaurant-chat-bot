@@ -42,10 +42,10 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                     {
                                         "title": "View",
                                         "type": "web_url",
-                                        "url": "https://bit.ly/imageToSend",
+                                        "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
                                         "messenger_extensions": true,
                                         "webview_height_ratio": "tall",
-                                        "fallback_url": "https://bit.ly/imageToSend"
+                                        "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
                                     }
                                 ]
                             },
@@ -54,7 +54,7 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                 "subtitle": "See all our colors",
                                 "default_action": {
                                     "type": "web_url",
-                                    "url": "https://bit.ly/imageToSend",
+                                    "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
                                     "messenger_extensions": false,
                                     "webview_height_ratio": "tall"
                                 }
@@ -65,19 +65,19 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                 "subtitle": "100% Cotton, 200% Comfortable",
                                 "default_action": {
                                     "type": "web_url",
-                                    "url": "https://bit.ly/imageToSend",
+                                    "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
                                     "messenger_extensions": true,
                                     "webview_height_ratio": "tall",
-                                    "fallback_url": "https://bit.ly/imageToSend"
+                                    "fallback_url": "hhttps://restaurant-bot-haryphamdev.herokuapp.com/"
                                 },
                                 "buttons": [
                                     {
                                         "title": "Shop Now",
                                         "type": "web_url",
-                                        "url": "https://bit.ly/imageToSend",
+                                        "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
                                         "messenger_extensions": true,
                                         "webview_height_ratio": "tall",
-                                        "fallback_url": "https://bit.ly/imageToSend"
+                                        "fallback_url": "https://restaurant-bot-haryphamdev.herokuapp.com/"
                                     }
                                 ]
                             }
