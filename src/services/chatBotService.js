@@ -54,15 +54,15 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                             {
                                 "title": "Classic T-Shirt Collection",
                                 "subtitle": "See all our colors",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                                "image_url": "https://bit.ly/imageToSend",
                                 "buttons": [
                                     {
                                         "title": "View",
                                         "type": "web_url",
-                                        "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                                        "url": "https://bit.ly/imageToSend",
                                         "messenger_extensions": true,
                                         "webview_height_ratio": "tall",
-                                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                                        "fallback_url": "https://bit.ly/imageToSend"
                                     }
                                 ]
                             },
@@ -71,30 +71,30 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                 "subtitle": "See all our colors",
                                 "default_action": {
                                     "type": "web_url",
-                                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                                    "url": "https://bit.ly/imageToSend",
                                     "messenger_extensions": false,
                                     "webview_height_ratio": "tall"
                                 }
                             },
                             {
                                 "title": "Classic Blue T-Shirt",
-                                "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                                "image_url": "https://bit.ly/imageToSend",
                                 "subtitle": "100% Cotton, 200% Comfortable",
                                 "default_action": {
                                     "type": "web_url",
-                                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
+                                    "url": "https://bit.ly/imageToSend",
                                     "messenger_extensions": true,
                                     "webview_height_ratio": "tall",
-                                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                                    "fallback_url": "https://bit.ly/imageToSend"
                                 },
                                 "buttons": [
                                     {
                                         "title": "Shop Now",
                                         "type": "web_url",
-                                        "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                                        "url": "https://bit.ly/imageToSend",
                                         "messenger_extensions": true,
                                         "webview_height_ratio": "tall",
-                                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                                        "fallback_url": "https://bit.ly/imageToSend"
                                     }
                                 ]
                             }
