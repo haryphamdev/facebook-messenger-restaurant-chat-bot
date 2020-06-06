@@ -125,7 +125,9 @@ let handlePostback = async (sender_psid, received_postback)=> {
         case "GET_STARTED":
             //get facebook username
             let username = await chatBotService.getFacebookUsername(sender_psid);
-            response = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
+            await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
+
+            // response = {"text": `Welcome ${username} to HaryPhamDev's Restaurant`};
             break;
         case "no":
             response = {};
@@ -137,7 +139,7 @@ let handlePostback = async (sender_psid, received_postback)=> {
             console.log("Something wrong with switch case payload");
     }
     // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, response);
+    // callSendAPI(sender_psid, response);
 };
 
 // Sends response messages via the Send API
