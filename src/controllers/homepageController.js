@@ -30,8 +30,8 @@ let setUpUserFacebookProfile = (req, res) => {
                     },
                     {
                         "type": "web_url",
-                        "title": "View website",
-                        "url": "https://restaurant-bot-haryphamdev.herokuapp.com/",
+                        "title": "View Facebook Fan Page",
+                        "url": "https://facebook.com/haryphamdev",
                         "webview_height_ratio": "full"
                     }
                 ]

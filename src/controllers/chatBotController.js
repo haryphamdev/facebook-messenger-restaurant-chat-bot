@@ -123,40 +123,38 @@ let handlePostback = async (sender_psid, received_postback)=> {
     // Set the response based on the postback payload
     switch (payload) {
         case "GET_STARTED":
-            response = { text: "Welcome! How can I help you?"};
-            callSendAPI(sender_psid, response);
             //get facebook username
-            // let username = await chatBotService.getFacebookUsername(sender_psid);
-            // //send welcome response to users
-            // await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
+            let username = await chatBotService.getFacebookUsername(sender_psid);
+            //send welcome response to users
+            await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
             break;
-        // case "MAIN_MENU":
-        //    //send main menu to users
-        //     await chatBotService.sendMainMenu(sender_psid);
-        //     break;
-        // case "LUNCH_MENU":
-        //     await chatBotService.sendLunchMenu(sender_psid);
-        //     break;
-        // case "DINNER_MENU":
-        //     await chatBotService.sendDinnerMenu(sender_psid);
-        //     break;
-        // case "PUB_MENU":
-        //     await chatBotService.sendPubMenu(sender_psid);
-        //     break;
-        // case "RESERVE_TABLE":
-        //     await chatBotService.handleReserveTable(sender_psid);
-        //     break;
-        // case "SHOW_ROOMS":
-        //     break;
-        // case "SHOW_APPETIZERS":
-        //     await chatBotService.sendAppetizer(sender_psid);
-        //     break;
-        // case "BACK_TO_MAIN_MENU":
-        //     await chatBotService.goBackToMainMenu(sender_psid);
-        //     break;
-        // case "BACK_TO_LUNCH_MENU":
-        //     await chatBotService.goBackToLunchMenu(sender_psid);
-        //     break;
+        case "MAIN_MENU":
+           //send main menu to users
+            await chatBotService.sendMainMenu(sender_psid);
+            break;
+        case "LUNCH_MENU":
+            await chatBotService.sendLunchMenu(sender_psid);
+            break;
+        case "DINNER_MENU":
+            await chatBotService.sendDinnerMenu(sender_psid);
+            break;
+        case "PUB_MENU":
+            await chatBotService.sendPubMenu(sender_psid);
+            break;
+        case "RESERVE_TABLE":
+            await chatBotService.handleReserveTable(sender_psid);
+            break;
+        case "SHOW_ROOMS":
+            break;
+        case "SHOW_APPETIZERS":
+            await chatBotService.sendAppetizer(sender_psid);
+            break;
+        case "BACK_TO_MAIN_MENU":
+            await chatBotService.goBackToMainMenu(sender_psid);
+            break;
+        case "BACK_TO_LUNCH_MENU":
+            await chatBotService.goBackToLunchMenu(sender_psid);
+            break;
 
         case "yes":
             response = { text: "Thank you!"};
