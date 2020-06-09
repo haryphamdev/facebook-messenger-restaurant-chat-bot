@@ -85,7 +85,6 @@ let handleMessage = async (sender_psid, message) => {
             //asking about phone number
             user.quantity = "1-2";
             await chatBotService.sendMessageAskingPhoneNumber(sender_psid);
-            await chatBotService.sendNotificationToTelegram(user);
             return;
         }
         // pay load is a phone number
@@ -93,6 +92,7 @@ let handleMessage = async (sender_psid, message) => {
             //done
             user.phoneNumber = message.quick_reply.payload;
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
+            await chatBotService.sendNotificationToTelegram(user);
         }
         return;
     }
@@ -108,6 +108,7 @@ let handleMessage = async (sender_psid, message) => {
         //handle quick reply message: done reserve table
         user.phoneNumber = entity.value;
         await chatBotService.sendMessageDoneReserveTable(sender_psid);
+        await chatBotService.sendNotificationToTelegram(user);
     } else {
         //default reply
     }
