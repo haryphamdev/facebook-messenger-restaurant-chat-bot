@@ -545,7 +545,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": `Done! \nOur reservation team will contact you as soon as possible ${username}\n \nWould you like to check our Main Menu?`,
+                    "text": `Done! \nOur reservation team will contact you as soon as possible ${username}.\n \nWould you like to check our Main Menu?`,
                     "buttons": [
                         {
                             "type": "postback",
@@ -560,6 +560,43 @@ let sendMessageDoneReserveTable = async (sender_id) => {
     } catch (e) {
         console.log(e);
     }
+};
+
+let sendNotificationToTelegram = (user) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let request_body = {
+                chat_id: process.env.TELEGRAM_GROUP_ID,
+                parse_mode: "Markdown",
+                text: `
+                 \`A new reservation\`
+| ------------- | ------------- |
+| 1. Username: **Pham Tuan**   |
+| 2. Phone number: **0368435258** |
+| 3. Time: **20-08-2020** |
+| 4. Quatity: **1-2** |
+| ------------- | ------------- |
+                
+      `
+            };
+
+            // Send the HTTP request to the Messenger Platform
+            request({
+                "uri": `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+                "method": "POST",
+                "json": request_body
+            }, (err, res, body) => {
+                if (!err) {
+                    console.log("telegram sent!");
+                    resolve('done!')
+                } else {
+                    reject("Unable to send message:" + err);
+                }
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
 module.exports = {
