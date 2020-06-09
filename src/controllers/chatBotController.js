@@ -108,6 +108,7 @@ let handleMessage = async (sender_psid, message) => {
         await chatBotService.sendMessageAskingQuality(sender_psid);
     } else if (entity.name === "phone_number") {
         //handle quick reply message: done reserve table
+
         user.phoneNumber = entity.value;
         user.createdAt = moment(Date.now()).zone("+07:00").format('MM/DD/YYYY H:mm A');
         await chatBotService.sendMessageDoneReserveTable(sender_psid);
