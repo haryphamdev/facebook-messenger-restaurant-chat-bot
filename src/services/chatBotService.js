@@ -528,27 +528,28 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         }
     };
-    await sendMessage(sender_id, response);
+    await sendMessage(sender_id, response).then(async ()=> {
 
-    //send another message
-    let response2 = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text": "Done! \n Our reservation team will contact you as soon as possible \n \n Would you like to check our Main Menu?",
-                "buttons": [
-                    {
-                        "type": "postback",
-                        "title": "SHOW MAIN MENU",
-                        "payload": "MAIN_MENU"
-                    }
-                ]
+        //send another message
+        let response2 = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Done! \nOur reservation team will contact you as soon as possible \n \nWould you like to check our Main Menu?",
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "SHOW MAIN MENU",
+                            "payload": "MAIN_MENU"
+                        }
+                    ]
+                }
             }
-        }
-    };
+        };
+        await sendMessage(sender_id, response2);
+    });
 
-    await sendMessage(sender_id, response2);
 };
 
 module.exports = {
