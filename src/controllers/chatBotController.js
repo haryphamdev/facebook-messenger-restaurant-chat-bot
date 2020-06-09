@@ -92,7 +92,7 @@ let handleMessage = async (sender_psid, message) => {
         if (message.quick_reply.payload !== " ") {
             //done
             user.phoneNumber = message.quick_reply.payload;
-            user.createdAt = moment(Date.now()).utc().format('MM/DD/YYYY HH:mm A').zone("+07:00");
+            user.createdAt = moment(Date.now()).format('MM/DD/YYYY HH:mm A').zone("+07:00");
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
             await chatBotService.sendNotificationToTelegram(user);
         }
