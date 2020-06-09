@@ -534,17 +534,19 @@ let sendMessageDoneReserveTable = async (sender_id) => {
     let response2 = {
         "attachment": {
             "type": "template",
-            "template_type": "button",
-            "text": `Done!
+            "payload": {
+                "template_type": "button",
+                "text": `Done!
                 Our reservation team will contact you as soon as possible "name here"
                 Would you like to check our Main Menu?`,
-            "buttons": [
-                {
-                    "type":"postback",
-                    "title":"SHOW MAIN MENU",
-                    "payload":"MAIN_MENU"
-                }
-            ]
+                "buttons": [
+                    {
+                        "type": "postback",
+                        "title": "SHOW MAIN MENU",
+                        "payload": "MAIN_MENU"
+                    }
+                ]
+            }
         }
     };
 
