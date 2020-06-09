@@ -536,9 +536,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             "type": "template",
             "payload": {
                 "template_type": "button",
-                "text": `Done!
-                Our reservation team will contact you as soon as possible "name here"
-                Would you like to check our Main Menu?`,
+                "text": "Done! \n Our reservation team will contact you as soon as possible \n \n Would you like to check our Main Menu?",
                 "buttons": [
                     {
                         "type": "postback",
