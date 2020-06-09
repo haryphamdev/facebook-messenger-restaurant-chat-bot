@@ -70,27 +70,27 @@ let getWebhook = (req, res) => {
 };
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+let  handleMessage = async (sender_psid, received_message) => {
    //handle text message
    let entity = handleMessageWithEntities(received_message);
 
-   // if(entity === "datetime"){
-   //     //handle quick reply message: asking about phone number
-   //
-   // }else if(entity === "phone_number"){
-   //     //handle quick reply message: done reserve table
-   //
-   // }else{
-   //      //default reply
-   //  }
+   if(entity.name === "datetime"){
+       //handle quick reply message: asking about the party size , how many people
+     await chatBotService.sendMessageAskingQuality(sender_psid);
+   }else if(entity.name === "phone_number"){
+       //handle quick reply message: done reserve table
+
+   }else{
+        //default reply
+    }
 
     //handle attachment message
-}
+};
 
 let handleMessageWithEntities = (message) => {
     let entitiesArr = [ "datetime", "phone_number"];
     let entityChosen = "";
-    let data = {};
+    let data = {}; // data is an object saving value and name of the entity.
     entitiesArr.forEach((name) => {
         let entity = firstEntity(message.nlp, name);
         if (entity && entity.confidence > 0.8) {
@@ -100,9 +100,6 @@ let handleMessageWithEntities = (message) => {
     });
 
     data.name = entityChosen;
-    console.log("---------------")
-    console.log(data)
-    console.log("---------------")
     return data;
 };
 
