@@ -72,9 +72,17 @@ let getWebhook = (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
    //handle text message
-    handleMessageWithEntities(received_message);
+   let entity = handleMessageWithEntities(received_message);
 
-    //handle quick reply message
+   if(entity === "datetime"){
+       //handle quick reply message: asking about phone number
+
+   }else if(entity === "phone_number"){
+       //handle quick reply message: done reserve table
+
+   }else{
+        //default reply
+    }
 
     //handle attachment message
 }
@@ -84,13 +92,14 @@ let handleMessageWithEntities = (message) => {
     let entityChosen = "";
     entitiesArr.forEach((name) => {
         let entity = firstEntity(message.nlp, name);
+        console.log("abcasfasdfsadf");
+        console.log(entity);
+        console.log("abcasfasdfsadf");
         if (entity && entity.confidence > 0.8) {
             entityChosen = name;
         }
     });
-    console.log("--------------");
-    console.log(entityChosen);
-    console.log("--------------");
+    return entityChosen;
 };
 
 function firstEntity(nlp, name) {
