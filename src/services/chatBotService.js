@@ -529,7 +529,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                 }
             }
         };
-        await sendMessage(sender_id, response).then(async ()=> {
+        await sendMessage(sender_id, response);
 
             //send another message
             let response2 = {
@@ -549,7 +549,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                 }
             };
             await sendMessage(sender_id, response2);
-        });
+
     }catch (e) {
         console.log(e)
     }
