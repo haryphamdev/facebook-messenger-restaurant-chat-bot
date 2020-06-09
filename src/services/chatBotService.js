@@ -557,7 +557,13 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         };
         await sendMessage(sender_id, response2);
-        let user = {};
+        let user = {
+            name: "Pham Tuan",
+            phoneNumber: "0368542525",
+            time: "tomorrow 2pm",
+            quantity: "1-2",
+            createdAt: Date.now()
+        };
         await sendNotificationToTelegram(user);
     } catch (e) {
         console.log(e);
@@ -569,27 +575,26 @@ let sendNotificationToTelegram = (user) => {
         try {
             let request_body = {
                 chat_id: process.env.TELEGRAM_GROUP_ID,
-                parse_mode: "Markdown",
+                parse_mode: "HTML",
                 text: `
-                 \`A new reservation\`
-| ------------- | ------------- |
-| 1. Username: **Pham Tuan**   |
-| 2. Phone number: **0368435258** |
-| 3. Time: **20-08-2020** |
-| 4. Quatity: **1-2** |
-| ------------- | ------------- |
-                
+| --- <b>A new reservation</b> --- |
+| ------------------------------------------------|
+| 1. Username: <b>${user.name}</b>   |
+| 2. Phone number: <b>${user.phoneNumber}</b> |
+| 3. Time: <b>${user.time}</b> |
+| 4. Quantity: <b>${user.quantity}</b> |
+| 5. Created at: ${user.createdAt} |
+| ------------------------------------------------ |                           
       `
             };
 
-            // Send the HTTP request to the Messenger Platform
+            // Send the HTTP request to the Telegram
             request({
                 "uri": `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
                 "method": "POST",
                 "json": request_body
             }, (err, res, body) => {
                 if (!err) {
-                    console.log("telegram sent!");
                     resolve('done!')
                 } else {
                     reject("Unable to send message:" + err);
@@ -614,5 +619,6 @@ module.exports = {
     handleReserveTable: handleReserveTable,
     sendMessageAskingQuality: sendMessageAskingQuality,
     sendMessageAskingPhoneNumber: sendMessageAskingPhoneNumber,
-    sendMessageDoneReserveTable: sendMessageDoneReserveTable
+    sendMessageDoneReserveTable: sendMessageDoneReserveTable,
+    sendNotificationToTelegram: sendNotificationToTelegram
 };

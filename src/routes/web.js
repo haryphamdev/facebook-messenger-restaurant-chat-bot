@@ -13,7 +13,19 @@ let initWebRoutes = (app) => {
     router.post("/set-up-user-fb-profile", homepageController.setUpUserFacebookProfile);
     router.get("/test",async (req, res) =>{
         let user = await chatBotService.getFacebookUsername(3350311028355090);
-    })
+    });
+    router.get("/tele", async (req, res) =>{
+        let user = {};
+        try{
+           let a = await chatBotService.sendNotificationToTelegram(user);
+           console.log(a)
+            console.log("done");
+            return res.send("ok")
+        }catch (e) {
+            console.log(e);
+        }
+
+    });
     return app.use("/", router);
 };
 
