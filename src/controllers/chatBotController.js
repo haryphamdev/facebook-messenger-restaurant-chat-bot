@@ -84,7 +84,10 @@ let handleMessage = async (sender_psid, message) => {
     if (message && message.quick_reply && message.quick_reply.payload) {
         if (message.quick_reply.payload === "SMALL" || message.quick_reply.payload === "MEDIUM" || message.quick_reply.payload === "LARGE") {
             //asking about phone number
-            user.quantity = "1-2";
+            if(message.quick_reply.payload === "SMALL") user.quantity = "1-2 people";
+            if(message.quick_reply.payload === "MEDIUM") user.quantity = "2-5 people";
+            if(message.quick_reply.payload === "LARGE") user.quantity = "More than 5 people";
+
             await chatBotService.sendMessageAskingPhoneNumber(sender_psid);
             return;
         }
@@ -92,7 +95,7 @@ let handleMessage = async (sender_psid, message) => {
         if (message.quick_reply.payload !== " ") {
             //done
             user.phoneNumber = message.quick_reply.payload;
-            user.createdAt = moment(Date.now()).zone("+07:00").format('MM/DD/YYYY H:mm A');
+            user.createdAt = moment(Date.now()).zone("+07:00").format('MM/DD/YYYY hh:mm A');
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
             await chatBotService.sendNotificationToTelegram(user);
         }
