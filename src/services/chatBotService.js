@@ -423,7 +423,7 @@ let handleReserveTable = (sender_psid) => {
 
 let sendMessage = (sender_psid, response) => {
     return new Promise((resolve, reject) => {
-        try{
+        try {
             let request_body = {
                 "recipient": {
                     "id": sender_psid
@@ -439,16 +439,16 @@ let sendMessage = (sender_psid, response) => {
                 "json": request_body
             }, (err, res, body) => {
                 if (!err) {
-                    resolve("done")
+                    console.log("message sent!");
+                    resolve('done!')
                 } else {
                     reject("Unable to send message:" + err);
                 }
             });
-        }catch (e) {
+        } catch (e) {
             reject(e);
         }
-    })
-
+    });
 };
 
 let sendMessageAskingQuality = (sender_id) => {
@@ -525,7 +525,7 @@ let sendMessageAskingPhoneNumber = (sender_id) => {
 };
 
 let sendMessageDoneReserveTable = async (sender_id) => {
-    try{
+    try {
         let response = {
             "attachment": {
                 "type": "image",
@@ -536,30 +536,30 @@ let sendMessageDoneReserveTable = async (sender_id) => {
         };
         await sendMessage(sender_id, response);
 
-            //send another message
-            let response2 = {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "button",
-                        "text": "Done! \nOur reservation team will contact you as soon as possible \n \nWould you like to check our Main Menu?",
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "SHOW MAIN MENU",
-                                "payload": "MAIN_MENU"
-                            }
-                        ]
-                    }
+        //get facebook username
+        let username = getFacebookUsername(sender_id);
+
+        //send another message
+        let response2 = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": `Done! \nOur reservation team will contact you as soon as possible ${username}\n \nWould you like to check our Main Menu?`,
+                    "buttons": [
+                        {
+                            "type": "postback",
+                            "title": "SHOW MAIN MENU",
+                            "payload": "MAIN_MENU"
+                        }
+                    ]
                 }
-            };
-            await sendMessage(sender_id, response2);
-
-    }catch (e) {
-        console.log(e)
+            }
+        };
+        await sendMessage(sender_id, response2);
+    } catch (e) {
+        console.log(e);
     }
-
-
 };
 
 module.exports = {
