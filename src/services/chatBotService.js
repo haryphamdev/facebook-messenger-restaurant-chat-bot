@@ -1,4 +1,5 @@
 import request from "request";
+
 require("dotenv").config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -410,11 +411,11 @@ let goBackToLunchMenu = (sender_psid) => {
 
 let handleReserveTable = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
-        try{
+        try {
             let username = await getFacebookUsername(sender_psid);
-            let response = { text: `Hi ${username}, What time and date you would like to reserve a table ?`};
+            let response = { text: `Hi ${username}, What time and date you would like to reserve a table ?` };
             await sendMessage(sender_psid, response);
-        }catch (e) {
+        } catch (e) {
             reject(e);
         }
     });
@@ -447,26 +448,26 @@ let sendMessage = (sender_psid, response) => {
 
 let sendMessageAskingQuality = (sender_id) => {
     let request_body = {
-        "recipient":{
+        "recipient": {
             "id": sender_id
         },
         "messaging_type": "RESPONSE",
-        "message":{
+        "message": {
             "text": "What is your party size ?",
-            "quick_replies":[
+            "quick_replies": [
                 {
-                    "content_type":"text",
-                    "title":"1-2",
-                    "payload":"SMALL",
-                },{
-                    "content_type":"text",
-                    "title":"2-5",
-                    "payload":"MEDIUM",
+                    "content_type": "text",
+                    "title": "1-2",
+                    "payload": "SMALL",
+                }, {
+                    "content_type": "text",
+                    "title": "2-5",
+                    "payload": "MEDIUM",
                 },
                 {
-                    "content_type":"text",
-                    "title":"more than 5",
-                    "payload":"LARGE",
+                    "content_type": "text",
+                    "title": "more than 5",
+                    "payload": "LARGE",
                 }
             ]
         }
@@ -487,15 +488,15 @@ let sendMessageAskingQuality = (sender_id) => {
     });
 };
 
-let sendMessageAskingPhoneNumber = (sender_id) =>{
+let sendMessageAskingPhoneNumber = (sender_id) => {
     let request_body = {
         "recipient": {
             "id": sender_id
         },
         "messaging_type": "RESPONSE",
-        "message":{
+        "message": {
             "text": "Thank you. And what's the best phone number for us to reach you at?",
-            "quick_replies":[
+            "quick_replies": [
                 {
                     "content_type": "user_phone_number",
                 }
@@ -527,9 +528,28 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         }
     };
+    await sendMessage(sender_id, response).then( async () => {
+        //send another message
+        let response = {
+            "attachment": {
+                "type": "template",
+                "template_type": "button",
+                "text": `Done!
+                Our reservation team will contact you as soon as possible "name here"
+                Would you like to check our Main Menu?`,
+                "buttons": [
+                    {
+                        "type":"postback",
+                        "title":"SHOW MAIN MENU",
+                        "payload":"MAIN_MENU"
+                    }
+                ]
+            }
+        };
 
-    await sendMessage(sender_id, response)
+        await sendMessage(sender_id, response);
 
+    });
 };
 
 module.exports = {
