@@ -16,6 +16,7 @@ let getFacebookUsername = (sender_psid) => {
                 //convert string to json object
                 body = JSON.parse(body);
                 let username = `${body.last_name} ${body.first_name}`;
+                USER.name = username;
                 resolve(username);
             } else {
                 reject("Unable to send message:" + err);
@@ -557,14 +558,14 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         };
         await sendMessage(sender_id, response2);
-        let user = {
-            name: "Pham Tuan",
-            phoneNumber: "0368542525",
-            time: "tomorrow 2pm",
-            quantity: "1-2",
-            createdAt: Date.now()
-        };
-        await sendNotificationToTelegram(user);
+        // let user = {
+        //     name: "Pham Tuan",
+        //     phoneNumber: "0368542525",
+        //     time: "tomorrow 2pm",
+        //     quantity: "1-2",
+        //     createdAt: Date.now()
+        // };
+
     } catch (e) {
         console.log(e);
     }

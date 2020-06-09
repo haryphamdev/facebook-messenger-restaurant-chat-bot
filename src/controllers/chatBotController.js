@@ -5,7 +5,15 @@ import chatBotService from "../services/chatBotService";
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-let postWebhook =  (req, res) => {
+let user = {
+    name: "",
+    phoneNumber: "",
+    time: "",
+    quantity: "",
+    createdAt: Date.now()
+};
+
+let postWebhook = (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
 
@@ -70,32 +78,37 @@ let getWebhook = (req, res) => {
 };
 
 // Handles messages events
-let  handleMessage = async (sender_psid, message) => {
+let handleMessage = async (sender_psid, message) => {
     //checking quick reply
-    if(message && message.quick_reply && message.quick_reply.payload){
-        if(message.quick_reply.payload === "SMALL" || message.quick_reply.payload === "MEDIUM" || message.quick_reply.payload === "LARGE"){
+    if (message && message.quick_reply && message.quick_reply.payload) {
+        if (message.quick_reply.payload === "SMALL" || message.quick_reply.payload === "MEDIUM" || message.quick_reply.payload === "LARGE") {
             //asking about phone number
-           await chatBotService.sendMessageAskingPhoneNumber(sender_psid);
-           return;
+            user.quantity = "1-2";
+            await chatBotService.sendMessageAskingPhoneNumber(sender_psid);
+            await chatBotService.sendNotificationToTelegram(user);
+            return;
         }
         // pay load is a phone number
-        if(message.quick_reply.payload !== " "){
+        if (message.quick_reply.payload !== " ") {
             //done
+            user.phoneNumber = message.quick_reply.payload;
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
         }
         return;
     }
 
-   //handle text message
-   let entity = handleMessageWithEntities(message);
+    //handle text message
+    let entity = handleMessageWithEntities(message);
 
-   if(entity.name === "datetime"){
-       //handle quick reply message: asking about the party size , how many people
-     await chatBotService.sendMessageAskingQuality(sender_psid);
-   }else if(entity.name === "phone_number"){
-       //handle quick reply message: done reserve table
-       await chatBotService.sendMessageDoneReserveTable(sender_psid);
-   }else{
+    if (entity.name === "datetime") {
+        //handle quick reply message: asking about the party size , how many people
+        user.time = entity.value;
+        await chatBotService.sendMessageAskingQuality(sender_psid);
+    } else if (entity.name === "phone_number") {
+        //handle quick reply message: done reserve table
+        user.phoneNumber = entity.value;
+        await chatBotService.sendMessageDoneReserveTable(sender_psid);
+    } else {
         //default reply
     }
 
@@ -103,7 +116,7 @@ let  handleMessage = async (sender_psid, message) => {
 };
 
 let handleMessageWithEntities = (message) => {
-    let entitiesArr = [ "datetime", "phone_number"];
+    let entitiesArr = [ "datetime", "phone_number" ];
     let entityChosen = "";
     let data = {}; // data is an object saving value and name of the entity.
     entitiesArr.forEach((name) => {
@@ -123,7 +136,7 @@ function firstEntity(nlp, name) {
 }
 
 // Handles messaging_postbacks events
-let handlePostback = async (sender_psid, received_postback)=> {
+let handlePostback = async (sender_psid, received_postback) => {
     let response;
     // Get the payload for the postback
     let payload = received_postback.payload;
@@ -132,11 +145,12 @@ let handlePostback = async (sender_psid, received_postback)=> {
         case "GET_STARTED":
             //get facebook username
             let username = await chatBotService.getFacebookUsername(sender_psid);
+            user.name = username;
             //send welcome response to users
             await chatBotService.sendResponseWelcomeNewCustomer(username, sender_psid);
             break;
         case "MAIN_MENU":
-           //send main menu to users
+            //send main menu to users
             await chatBotService.sendMainMenu(sender_psid);
             break;
         case "LUNCH_MENU":
@@ -164,11 +178,11 @@ let handlePostback = async (sender_psid, received_postback)=> {
             break;
 
         case "yes":
-            response = { text: "Thank you!"};
+            response = { text: "Thank you!" };
             callSendAPI(sender_psid, response);
             break;
         case "no":
-            response = {text: "Please try another image."};
+            response = { text: "Please try another image." };
             callSendAPI(sender_psid, response);
             break;
         default:
