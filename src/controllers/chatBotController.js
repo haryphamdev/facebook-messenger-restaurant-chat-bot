@@ -5,7 +5,7 @@ import chatBotService from "../services/chatBotService";
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-let postWebhook = (req, res) => {
+let postWebhook =  (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
 
@@ -71,48 +71,30 @@ let getWebhook = (req, res) => {
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
-    let response;
+   //handle text message
+    handleMessageWithEntities(received_message);
 
-    // Check if the message contains text
-    if (received_message.text) {
+    //handle quick reply message
 
-        // Create the payload for a basic text message
-        response = {
-            "text": `You sent the message: "${received_message.text}". Now send me an image!`
+    //handle attachment message
+}
+
+let handleMessageWithEntities = (message) => {
+    let entitiesArr = [ "datetime", "phone_number"];
+    let entityChosen = "";
+    entitiesArr.forEach((name) => {
+        let entity = firstEntity(message.nlp, name);
+        if (entity && entity.confidence > 0.8) {
+            entityChosen = name;
         }
-    } else if (received_message.attachments) {
+    });
+    console.log("--------------");
+    console.log(entityChosen);
+    console.log("--------------");
+};
 
-        // Gets the URL of the message attachment
-        let attachment_url = received_message.attachments[0].payload.url;
-        response = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [ {
-                        "title": "Is this the right picture?",
-                        "subtitle": "Tap a button to answer.",
-                        "image_url": attachment_url,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Yes!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "No!",
-                                "payload": "no",
-                            }
-                        ],
-                    } ]
-                }
-            }
-        }
-    }
-
-    // Sends the response message
-    callSendAPI(sender_psid, response);
+function firstEntity(nlp, name) {
+    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
 }
 
 // Handles messaging_postbacks events
