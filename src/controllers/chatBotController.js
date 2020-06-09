@@ -76,6 +76,12 @@ let  handleMessage = async (sender_psid, message) => {
         if(message.quick_reply.payload === "SMALL" || message.quick_reply.payload === "MEDIUM" || message.quick_reply.payload === "LARGE"){
             //asking about phone number
            await chatBotService.sendMessageAskingPhoneNumber(sender_psid);
+           return;
+        }
+        // pay load is a phone number
+        if(message.quick_reply.payload !== " "){
+            //done
+            await chatBotService.sendMessageDoneReserveTable(sender_psid);
         }
         return;
     }
@@ -88,7 +94,7 @@ let  handleMessage = async (sender_psid, message) => {
      await chatBotService.sendMessageAskingQuality(sender_psid);
    }else if(entity.name === "phone_number"){
        //handle quick reply message: done reserve table
-
+       await chatBotService.sendMessageDoneReserveTable(sender_psid);
    }else{
         //default reply
     }

@@ -487,7 +487,6 @@ let sendMessageAskingQuality = (sender_id) => {
     });
 };
 
-//Thank you. And what's the best phone number for us to reach you at?
 let sendMessageAskingPhoneNumber = (sender_id) =>{
     let request_body = {
         "recipient": {
@@ -518,6 +517,21 @@ let sendMessageAskingPhoneNumber = (sender_id) =>{
         }
     });
 };
+
+let sendMessageDoneReserveTable = async (sender_id) => {
+    let response = {
+        "attachment": {
+            "type": "image",
+            "payload": {
+                "url": "https://bit.ly/giftDonalTrump"
+            }
+        }
+    };
+
+    await sendMessage(sender_id, response)
+
+};
+
 module.exports = {
     getFacebookUsername: getFacebookUsername,
     sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer,
@@ -530,5 +544,6 @@ module.exports = {
     goBackToLunchMenu: goBackToLunchMenu,
     handleReserveTable: handleReserveTable,
     sendMessageAskingQuality: sendMessageAskingQuality,
-    sendMessageAskingPhoneNumber: sendMessageAskingPhoneNumber
+    sendMessageAskingPhoneNumber: sendMessageAskingPhoneNumber,
+    sendMessageDoneReserveTable: sendMessageDoneReserveTable
 };
