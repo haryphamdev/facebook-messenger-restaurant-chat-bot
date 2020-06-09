@@ -17,8 +17,9 @@ let initWebRoutes = (app) => {
     });
     router.get("/abc", async (req, res) =>{
         try{
-           console.log()
-            console.log()
+
+            let a = moment(Date.now()).zone("+07:00").format('MM/DD/YYYY HH:mm A');
+            console.log(a)
             return res.send("ok")
         }catch (e) {
             console.log(e);
