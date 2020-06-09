@@ -557,6 +557,8 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         };
         await sendMessage(sender_id, response2);
+        let user = {};
+        await sendNotificationToTelegram(user);
     } catch (e) {
         console.log(e);
     }
