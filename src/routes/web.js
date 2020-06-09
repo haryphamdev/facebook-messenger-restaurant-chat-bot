@@ -2,6 +2,7 @@ import express from "express";
 import homepageController from "../controllers/homepageController";
 import chatBotController from "../controllers/chatBotController";
 import chatBotService from "../services/chatBotService";
+import moment from "moment";
 
 let router = express.Router();
 
@@ -14,12 +15,10 @@ let initWebRoutes = (app) => {
     router.get("/test",async (req, res) =>{
         let user = await chatBotService.getFacebookUsername(3350311028355090);
     });
-    router.get("/tele", async (req, res) =>{
-        let user = {};
+    router.get("/abc", async (req, res) =>{
         try{
-           let a = await chatBotService.sendNotificationToTelegram(user);
-           console.log(a)
-            console.log("done");
+           console.log()
+            console.log()
             return res.send("ok")
         }catch (e) {
             console.log(e);

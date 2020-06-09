@@ -1,5 +1,6 @@
 require("dotenv").config();
 import request from "request";
+import moment from "moment";
 import chatBotService from "../services/chatBotService";
 
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
@@ -10,7 +11,7 @@ let user = {
     phoneNumber: "",
     time: "",
     quantity: "",
-    createdAt: Date.now()
+    createdAt: ""
 };
 
 let postWebhook = (req, res) => {
@@ -91,6 +92,7 @@ let handleMessage = async (sender_psid, message) => {
         if (message.quick_reply.payload !== " ") {
             //done
             user.phoneNumber = message.quick_reply.payload;
+            user.createdAt = moment(Date.now()).format('MM/DD/YYYY HH:mmA');
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
             await chatBotService.sendNotificationToTelegram(user);
         }
@@ -102,7 +104,7 @@ let handleMessage = async (sender_psid, message) => {
 
     if (entity.name === "datetime") {
         //handle quick reply message: asking about the party size , how many people
-        user.time = entity.value;
+        user.time = moment(entity.value).format('MM/DD/YYYY HH:mmA');
         await chatBotService.sendMessageAskingQuality(sender_psid);
     } else if (entity.name === "phone_number") {
         //handle quick reply message: done reserve table
