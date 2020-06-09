@@ -74,15 +74,15 @@ function handleMessage(sender_psid, received_message) {
    //handle text message
    let entity = handleMessageWithEntities(received_message);
 
-   if(entity === "datetime"){
-       //handle quick reply message: asking about phone number
-
-   }else if(entity === "phone_number"){
-       //handle quick reply message: done reserve table
-
-   }else{
-        //default reply
-    }
+   // if(entity === "datetime"){
+   //     //handle quick reply message: asking about phone number
+   //
+   // }else if(entity === "phone_number"){
+   //     //handle quick reply message: done reserve table
+   //
+   // }else{
+   //      //default reply
+   //  }
 
     //handle attachment message
 }
@@ -90,16 +90,20 @@ function handleMessage(sender_psid, received_message) {
 let handleMessageWithEntities = (message) => {
     let entitiesArr = [ "datetime", "phone_number"];
     let entityChosen = "";
+    let data = {};
     entitiesArr.forEach((name) => {
         let entity = firstEntity(message.nlp, name);
-        console.log("abcasfasdfsadf");
-        console.log(entity);
-        console.log("abcasfasdfsadf");
         if (entity && entity.confidence > 0.8) {
             entityChosen = name;
+            data.value = entity.value;
         }
     });
-    return entityChosen;
+
+    data.name = entityChosen;
+    console.log("---------------")
+    console.log(data)
+    console.log("---------------")
+    return data;
 };
 
 function firstEntity(nlp, name) {
