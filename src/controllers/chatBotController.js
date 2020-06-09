@@ -92,7 +92,7 @@ let handleMessage = async (sender_psid, message) => {
         if (message.quick_reply.payload !== " ") {
             //done
             user.phoneNumber = message.quick_reply.payload;
-            user.createdAt = moment(Date.now()).utc().format('MM/DD/YYYY HH:mm A');
+            user.createdAt = moment(Date.now()).utc().format('MM/DD/YYYY HH:mm A').zone("+07:00");
             await chatBotService.sendMessageDoneReserveTable(sender_psid);
             await chatBotService.sendNotificationToTelegram(user);
         }
@@ -104,7 +104,7 @@ let handleMessage = async (sender_psid, message) => {
 
     if (entity.name === "datetime") {
         //handle quick reply message: asking about the party size , how many people
-        user.time = moment(entity.value).utc().format('MM/DD/YYYY HH:mmA');
+        user.time = moment(entity.value).format('MM/DD/YYYY HH:mmA').zone("+07:00");
         await chatBotService.sendMessageAskingQuality(sender_psid);
     } else if (entity.name === "phone_number") {
         //handle quick reply message: done reserve table
