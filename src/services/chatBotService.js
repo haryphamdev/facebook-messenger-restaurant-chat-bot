@@ -537,7 +537,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
         await sendMessage(sender_id, response);
 
         //get facebook username
-        let username = getFacebookUsername(sender_id);
+        let username = await getFacebookUsername(sender_id);
 
         //send another message
         let response2 = {
