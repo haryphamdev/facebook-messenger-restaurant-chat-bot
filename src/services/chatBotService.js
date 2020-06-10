@@ -648,6 +648,11 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                             "type": "postback",
                             "title": "SHOW MAIN MENU",
                             "payload": "MAIN_MENU"
+                        },
+                        {
+                            "type":"phone_number",
+                            "title":"☎ Hot line",
+                            "payload":"+911911"
                         }
                     ]
                 }
