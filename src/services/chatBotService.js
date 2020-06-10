@@ -385,6 +385,11 @@ let sendAppetizer = (sender_psid) => {
                                         "type": "postback",
                                         "title": "BACK TO MAIN MENU",
                                         "payload": "BACK_TO_MAIN_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "RESERVE A TABLE",
+                                        "payload": "RESERVE_TABLE",
                                     }
                                 ],
                             }
