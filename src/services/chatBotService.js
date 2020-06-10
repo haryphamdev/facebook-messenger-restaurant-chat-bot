@@ -441,6 +441,83 @@ let handleReserveTable = (sender_psid) => {
     });
 };
 
+let handleShowRooms = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Bull Moose Room",
+                                "subtitle": "The room is suited for parties of up to 25 people",
+                                "image_url": "https://bit.ly/showRoom1",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW DESCRIPTION",
+                                        "payload": "SHOW_ROOM_1",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Lillie Langstry Room",
+                                "subtitle": "The room is suited for parties of up to 35 people",
+                                "image_url": "https://bit.ly/showRoom2",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW DESCRIPTION",
+                                        "payload": "SHOW_ROOM_2",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Lincoln Room",
+                                "subtitle": "The room is suited for parties of up to 45 people",
+                                "image_url": "https://bit.ly/showRoom3",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "SHOW DESCRIPTION",
+                                        "payload": "SHOW_ROOM_1",
+                                    }
+                                ],
+                            },
+
+                            {
+                                "title": "Go back",
+                                "image_url": " https://bit.ly/imageToSend",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "BACK TO MAIN MENU",
+                                        "payload": "BACK_TO_MAIN_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "RESERVE A TABLE",
+                                        "payload": "RESERVE_TABLE",
+                                    }
+                                ],
+                            }
+                        ]
+                    }
+                }
+            };
+
+            //send a welcome message
+            await sendMessage(sender_psid, response);
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 let sendMessage = (sender_psid, response) => {
     return new Promise((resolve, reject) => {
         try {
@@ -637,6 +714,7 @@ module.exports = {
     goBackToMainMenu: goBackToMainMenu,
     goBackToLunchMenu: goBackToLunchMenu,
     handleReserveTable: handleReserveTable,
+    handleShowRooms: handleShowRooms,
     sendMessageAskingQuality: sendMessageAskingQuality,
     sendMessageAskingPhoneNumber: sendMessageAskingPhoneNumber,
     sendMessageDoneReserveTable: sendMessageDoneReserveTable,
