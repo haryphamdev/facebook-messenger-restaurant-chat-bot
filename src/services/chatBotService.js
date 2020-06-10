@@ -651,7 +651,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                         },
                         {
                             "type":"phone_number",
-                            "title":"☎ Hot line",
+                            "title":"☎ HOT LINE",
                             "payload":"+911911"
                         }
                     ]
