@@ -157,6 +157,7 @@ let handlePostback = async (sender_psid, received_postback) => {
     // Get the payload for the postback
     let payload = received_postback.payload;
     // Set the response based on the postback payload
+
     switch (payload) {
         case "GET_STARTED":
             //get facebook username
