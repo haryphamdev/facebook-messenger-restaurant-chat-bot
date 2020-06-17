@@ -659,14 +659,6 @@ let sendMessageDoneReserveTable = async (sender_id) => {
             }
         };
         await sendMessage(sender_id, response2);
-        // let user = {
-        //     name: "Pham Tuan",
-        //     phoneNumber: "0368542525",
-        //     time: "tomorrow 2pm",
-        //     quantity: "1-2",
-        //     createdAt: Date.now()
-        // };
-
     } catch (e) {
         console.log(e);
     }
