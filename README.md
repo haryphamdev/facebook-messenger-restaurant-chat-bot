@@ -31,7 +31,7 @@ A  restaurant chatbot uses Facebook Messenger Platform, building from scratch wi
 - The bot only works with the admin account, doesn't reply the others Facebook accounts: need to be approved the "pages_messaging" permission. 
 For detail, watch this video: https://youtu.be/0VRQRHnrGxg
 
-### Wonder how to build this bot and want to make it yourself, watch my video to build this bot from scratch:
+### Wonder how to build this bot and want to make it yourself, watch my video to build this bot from scratch: https://youtu.be/x_0X3EHmIu4
 
 ### Find me here:
 - Youtube Channel: https://bit.ly/subscribe-haryphamdev
