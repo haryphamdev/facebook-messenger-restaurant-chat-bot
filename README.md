@@ -14,6 +14,11 @@ A  restaurant chatbot uses Facebook Messenger Platform, building from scratch wi
 - Automatic understand a message is a datetime or a phone number (use for taking reservation).
 - Whenever a reservation is done, a message notification will be automatically push to a group Telegram.
 
+### New update:
+- Mark converstion is read.
+- Turn on/off typing
+- Handle the sentences with meaning "greetings", "thanks" and bye (support English, Spanish, Gemarny and France). Eg: test the bot with these sentences: What's up or Hola or Hallo or Bonjour.
+
 ### How to setup this bot for your own Facebook Page without any cost ?
 
 #### 1. Clone this project
