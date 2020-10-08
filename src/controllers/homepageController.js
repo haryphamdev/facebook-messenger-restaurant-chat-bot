@@ -1,4 +1,4 @@
-import homepageService from "../services/homepageService";;
+import homepageService from "../services/homepageService";
 require("dotenv").config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;

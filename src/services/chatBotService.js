@@ -3,7 +3,10 @@ import request from "request";
 require("dotenv").config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-
+const URL_SHOW_ROOM_GIF = "https://media3.giphy.com/media/TGcD6N8uzJ9FXuDV3a/giphy.gif?cid=ecf05e47afe5be971d1fe6c017ada8e15c29a76fc524ac20&rid=giphy.gif";
+const URL_SALAD_GIF = "https://media0.giphy.com/media/9Vk8qP9EmWB8FePccb/giphy.gif?cid=ecf05e478d0c93d69e72264c8ebbf58a9a1d7ae294754131&rid=giphy.gif";
+const URL_SHOW_FISH = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ztjeouq2jlas5b2zxksm";
+const URL_SHOW_CLASSIC = "https://ardo.com/files/attachments/.10202/w1440h700q85_AZ1.jpg";
 let getFacebookUsername = (sender_psid) => {
     return new Promise((resolve, reject) => {
         // Send the HTTP request to the Messenger Platform
@@ -43,6 +46,16 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
                                         "type": "postback",
                                         "title": "SHOW MAIN MENU",
                                         "payload": "MAIN_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "RESERVE A TABLE",
+                                        "payload": "RESERVE_TABLE",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "GUIDE TO USE THIS BOT",
+                                        "payload": "GUIDE_BOT",
                                     }
                                 ],
                             } ]
@@ -51,9 +64,11 @@ let sendResponseWelcomeNewCustomer = (username, sender_psid) => {
             };
 
             //send a welcome message
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response_first);
 
             //send a image with button view main menu
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response_second);
 
             resolve("done!")
@@ -127,9 +142,9 @@ let sendMainMenu = (sender_psid) => {
                     }
                 }
             };
-
-            //send a welcome message
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response);
+            resolve("done");
         } catch (e) {
             reject(e);
         }
@@ -215,9 +230,9 @@ let sendLunchMenu = (sender_psid) => {
                     }
                 }
             };
-
-            //send a welcome message
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response);
+            resolve("done");
         } catch (e) {
             reject(e);
         }
@@ -227,59 +242,86 @@ let sendLunchMenu = (sender_psid) => {
 let sendDinnerMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {
+            let response1 = {
+                "text": "Lump crab cocktail\n$25.00"
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://djfoodie.com/wp-content/uploads/Crab-Cocktail-3-800.jpg"
+                    }
+                }
+            };
+
+            let response3 = {
+                "text": "House cured salmon\n$16.00"
+            };
+            let response4 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://www.thespruceeats.com/thmb/rys3IyH2DB6Ma_r4IQ6emN-2jYw=/4494x3000/filters:fill(auto,1)/simple-homemade-gravlax-recipe-2216618_hero-01-592dadcba64743f98aa1f7a14f81d5b4.jpg"
+                    }
+                }
+            };
+
+            let response5 = {
+                "text": "Steamed Whole Maine Lobsters\n$35.00"
+            };
+            let response6 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://portcitydaily.com/wp-content/uploads/For-the-Shell-of-It.jpg"
+                    }
+                }
+            };
+
+            let response7 = {
                 "attachment": {
                     "type": "template",
                     "payload": {
-                        "template_type": "generic",
-                        "elements": [
+                        "template_type": "button",
+                        "text": `Back to main menu or make a reservation ?`,
+                        "buttons": [
                             {
-                                "title": "Appetizers",
-                                "image_url": "https://bit.ly/imageAppetizer",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW APPETIZERS",
-                                        "payload": "SHOW_APPETIZERS",
-                                    }
-                                ],
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
                             },
-
                             {
-                                "title": "Entree Salad",
-                                "image_url": " https://bit.ly/imageSalad",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW ENTREE SALAD",
-                                        "payload": "SHOW_ENTREE_SALAD",
-                                    }
-                                ],
-                            },
-
-                            {
-                                "title": "Go back",
-                                "image_url": " https://bit.ly/imageToSend",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "BACK TO MAIN MENU",
-                                        "payload": "BACK_TO_MAIN_MENU",
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "RESERVE A TABLE",
-                                        "payload": "RESERVE_TABLE",
-                                    }
-                                ],
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
                             }
                         ]
                     }
                 }
             };
 
-            //send a welcome message
-            await sendMessage(sender_psid, response);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response3);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response4);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response5);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response6);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response7);
+
+            resolve("done");
         } catch (e) {
             reject(e);
         }
@@ -289,71 +331,85 @@ let sendDinnerMenu = (sender_psid) => {
 let sendPubMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response = {
+            let response1 = {
+                "text": "Hamburger with French Fries\n$19.50"
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://previews.123rf.com/images/genmike/genmike1411/genmike141100010/33951440-burger-and-french-fries.jpg"
+                    }
+                }
+            };
+
+            let response3 = {
+                "text": "Ham and Cheese on a Baguette as Salad or Sandwich\n$21.00"
+            };
+            let response4 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://s3-ap-southeast-1.amazonaws.com/v3-live.image.oddle.me/product/Blackforesthamcheesebfd18d.jpg"
+                    }
+                }
+            };
+
+            let response5 = {
+                "text": "Braised short rib salad\n$29.50"
+            };
+            let response6 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/ribs_0.jpg?itok=bOf0t_NF"
+                    }
+                }
+            };
+
+            let response7 = {
                 "attachment": {
                     "type": "template",
                     "payload": {
-                        "template_type": "generic",
-                        "elements": [
+                        "template_type": "button",
+                        "text": `Back to main menu or make a reservation ?`,
+                        "buttons": [
                             {
-                                "title": "Appetizers",
-                                "image_url": "https://bit.ly/imageAppetizer",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW APPETIZERS",
-                                        "payload": "SHOW_APPETIZERS",
-                                    }
-                                ],
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
                             },
-
                             {
-                                "title": "Entree Salad",
-                                "image_url": " https://bit.ly/imageSalad",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW ENTREE SALAD",
-                                        "payload": "SHOW_ENTREE_SALAD",
-                                    }
-                                ],
-                            },
-
-                            {
-                                "title": "Fish and Shell Fish",
-                                "image_url": " https://bit.ly/imageFish",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "SHOW FISH",
-                                        "payload": "SHOW_FISH",
-                                    }
-                                ],
-                            },
-
-                            {
-                                "title": "Go back",
-                                "image_url": " https://bit.ly/imageToSend",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "BACK TO MAIN MENU",
-                                        "payload": "BACK_TO_MAIN_MENU",
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "RESERVE A TABLE",
-                                        "payload": "RESERVE_TABLE",
-                                    }
-                                ],
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
                             }
                         ]
                     }
                 }
             };
 
-            //send a welcome message
-            await sendMessage(sender_psid, response);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response3);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response4);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response5);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response6);
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response7);
+            resolve("done");
         } catch (e) {
             reject(e);
         }
@@ -413,7 +469,7 @@ let sendAppetizer = (sender_psid) => {
                 }
             };
 
-            //send a welcome message
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response);
         } catch (e) {
             reject(e);
@@ -434,6 +490,7 @@ let handleReserveTable = (sender_psid) => {
         try {
             let username = await getFacebookUsername(sender_psid);
             let response = { text: `Hi ${username}, What time and date you would like to reserve a table ?` };
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response);
         } catch (e) {
             reject(e);
@@ -458,7 +515,7 @@ let handleShowRooms = (sender_psid) => {
                                     {
                                         "type": "postback",
                                         "title": "SHOW DESCRIPTION",
-                                        "payload": "SHOW_ROOM_1",
+                                        "payload": "SHOW_ROOM_DETAIL",
                                     }
                                 ],
                             },
@@ -471,7 +528,7 @@ let handleShowRooms = (sender_psid) => {
                                     {
                                         "type": "postback",
                                         "title": "SHOW DESCRIPTION",
-                                        "payload": "SHOW_ROOM_2",
+                                        "payload": "SHOW_ROOM_DETAIL",
                                     }
                                 ],
                             },
@@ -484,7 +541,7 @@ let handleShowRooms = (sender_psid) => {
                                     {
                                         "type": "postback",
                                         "title": "SHOW DESCRIPTION",
-                                        "payload": "SHOW_ROOM_1",
+                                        "payload": "SHOW_ROOM_DETAIL",
                                     }
                                 ],
                             },
@@ -511,37 +568,8 @@ let handleShowRooms = (sender_psid) => {
             };
 
             //send a welcome message
+            await sendTypingOn(sender_psid);
             await sendMessage(sender_psid, response);
-        } catch (e) {
-            reject(e);
-        }
-    });
-};
-
-let sendMessage = (sender_psid, response) => {
-    return new Promise((resolve, reject) => {
-        try {
-            let request_body = {
-                "recipient": {
-                    "id": sender_psid
-                },
-                "message": response
-            };
-
-            // Send the HTTP request to the Messenger Platform
-            request({
-                "uri": "https://graph.facebook.com/v6.0/me/messages",
-                "qs": { "access_token": PAGE_ACCESS_TOKEN },
-                "method": "POST",
-                "json": request_body
-            }, (err, res, body) => {
-                if (!err) {
-                    console.log("message sent!");
-                    resolve('done!')
-                } else {
-                    reject("Unable to send message:" + err);
-                }
-            });
         } catch (e) {
             reject(e);
         }
@@ -631,6 +659,7 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                 }
             }
         };
+        await sendTypingOn(sender_id);
         await sendMessage(sender_id, response);
 
         //get facebook username
@@ -653,11 +682,17 @@ let sendMessageDoneReserveTable = async (sender_id) => {
                             "type":"phone_number",
                             "title":"☎ HOT LINE",
                             "payload":"+911911"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "START OVER",
+                            "payload": "RESTART_CONVERSATION"
                         }
                     ]
                 }
             }
         };
+        await sendTypingOn(sender_id);
         await sendMessage(sender_id, response2);
     } catch (e) {
         console.log(e);
@@ -700,6 +735,320 @@ let sendNotificationToTelegram = (user) => {
     });
 };
 
+let sendMessageDefaultForTheBot = (sender_psid) => {
+    return new Promise (async (resolve, reject) => {
+        try{
+            let response1 = {
+                "text": "Sorry, I'm just a bot, man ^^ \nYou can test me with all these buttons or try to make a reservation.\n\nThis video may help you to understand me 😉"
+            };
+            //send a media template
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "media",
+                        "elements": [
+                            {
+                                "media_type": "video",
+                                "url": "https://www.facebook.com/haryphamdev/videos/635394223852656/",
+                                "buttons": [
+                                    {
+                                        "type": "web_url",
+                                        "url": "https://bit.ly/subscribe-haryphamdev",
+                                        "title": "Watch more!"
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "Start over",
+                                        "payload": "RESTART_CONVERSATION"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            };
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+            resolve("done");
+        }catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let showRoomDetail = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response1 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": URL_SHOW_ROOM_GIF
+                    }
+                }
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": `The rooms is suited for parties up to 45 people.`,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            resolve("done!");
+        }catch (e) {
+            reject(e);
+        }
+    })
+};
+
+let sendSalad = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response1 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": URL_SALAD_GIF
+                    }
+                }
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": `Entree Salad \n$25.00`,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            resolve("done");
+        }catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendFish = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response1 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": URL_SHOW_FISH
+                    }
+                }
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": `Fish fry \n$60.00`,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            resolve("done");
+        }catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendClassic = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let response1 = {
+                "attachment": {
+                    "type": "image",
+                    "payload": {
+                        "url": URL_SHOW_CLASSIC
+                    }
+                }
+            };
+            let response2 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "button",
+                        "text": `Perfect oven baked fries \n$30.00`,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "SHOW MAIN MENU",
+                                "payload": "MAIN_MENU"
+                            },
+                            {
+                                "type": "postback",
+                                "title": "RESERVE A TABLE",
+                                "payload": "RESERVE_TABLE",
+                            }
+                        ]
+                    }
+                }
+            };
+
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response1);
+            await sendTypingOn(sender_psid);
+            await sendMessage(sender_psid, response2);
+
+            resolve("done");
+        }catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendMessage = (sender_psid, response) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let request_body = {
+                "recipient": {
+                    "id": sender_psid
+                },
+                "message": response,
+            };
+
+            // Send the HTTP request to the Messenger Platform
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+            }, (err, res, body) => {
+                console.log(res)
+                console.log(body)
+                if (!err) {
+                    console.log("message sent!");
+                    resolve('done!')
+                } else {
+                    reject("Unable to send message:" + err);
+                }
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let sendTypingOn = (sender_psid) => {
+    return new Promise ((resolve, reject) => {
+       try{
+           let request_body = {
+               "recipient": {
+                   "id": sender_psid
+               },
+               "sender_action":"typing_on"
+           };
+
+           // Send the HTTP request to the Messenger Platform
+           request({
+               "uri": "https://graph.facebook.com/v6.0/me/messages",
+               "qs": { "access_token": PAGE_ACCESS_TOKEN },
+               "method": "POST",
+               "json": request_body
+           }, (err, res, body) => {
+               if (!err) {
+                   resolve('done!')
+               } else {
+                   reject("Unable to send message:" + err);
+               }
+           });
+       } catch (e) {
+           reject(e);
+       }
+    });
+};
+
+let markMessageSeen = (sender_psid) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let request_body = {
+                "recipient": {
+                    "id": sender_psid
+                },
+                "sender_action":"mark_seen"
+            };
+
+            // Send the HTTP request to the Messenger Platform
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+            }, (err, res, body) => {
+                if (!err) {
+                    resolve('done!')
+                } else {
+                    reject("Unable to send message:" + err);
+                }
+            });
+        }catch (e) {
+          reject(e);
+        }
+    });
+};
+
 module.exports = {
     getFacebookUsername: getFacebookUsername,
     sendResponseWelcomeNewCustomer: sendResponseWelcomeNewCustomer,
@@ -715,5 +1064,13 @@ module.exports = {
     sendMessageAskingQuality: sendMessageAskingQuality,
     sendMessageAskingPhoneNumber: sendMessageAskingPhoneNumber,
     sendMessageDoneReserveTable: sendMessageDoneReserveTable,
-    sendNotificationToTelegram: sendNotificationToTelegram
+    sendNotificationToTelegram: sendNotificationToTelegram,
+    sendMessageDefaultForTheBot:sendMessageDefaultForTheBot,
+    showRoomDetail: showRoomDetail,
+    sendSalad: sendSalad,
+    sendFish: sendFish,
+    sendClassic:sendClassic,
+    markMessageSeen: markMessageSeen,
+    sendTypingOn: sendTypingOn,
+    sendMessage: sendMessage
 };
