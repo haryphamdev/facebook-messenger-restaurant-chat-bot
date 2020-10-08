@@ -116,12 +116,12 @@ let handleMessage = async (sender_psid, message) => {
     await chatBotService.sendTypingOn(sender_psid);
     await chatBotService.markMessageSeen(sender_psid);
 
-    if (entity.name === "datetime") {
+    if (entity.name === "wit$datetime:datetime") {
         //handle quick reply message: asking about the party size , how many people
         user.time = moment(entity.value).zone("+07:00").format('MM/DD/YYYY h:mm A');
 
         await chatBotService.sendMessageAskingQuality(sender_psid);
-    } else if (entity.name === "phone_number") {
+    } else if (entity.name === "wit$phone_number:phone_number") {
         //handle quick reply message: done reserve table
 
         user.phoneNumber = entity.value;
@@ -132,11 +132,11 @@ let handleMessage = async (sender_psid, message) => {
         // send messages to the user
         await chatBotService.sendMessageDoneReserveTable(sender_psid);
 
-    } else if (entity.name === "greetings") {
+    } else if (entity.name === "wit$greetings") {
         await homepageService.sendResponseGreetings(sender_psid, locale);
-    } else if (entity.name === "thanks") {
+    } else if (entity.name === "wit$thanks") {
         await homepageService.sendResponseThanks(sender_psid, locale);
-    } else if (entity.name === "bye") {
+    } else if (entity.name === "wit$bye") {
         await homepageService.sendResponseBye(sender_psid, locale);
     } else {
         //default reply
@@ -147,11 +147,11 @@ let handleMessage = async (sender_psid, message) => {
 };
 
 let handleMessageWithEntities = (message) => {
-    let entitiesArr = [ "datetime", "phone_number", "greetings", "thanks", "bye" ];
+    let entitiesArr = [ "wit$datetime:datetime", "wit$phone_number:phone_number", "wit$greetings", "wit$thanks", "wit$bye" ];
     let entityChosen = "";
     let data = {}; // data is an object saving value and name of the entity.
     entitiesArr.forEach((name) => {
-        let entity = firstEntity(message.nlp, name);
+        let entity = firstTrait(message.nlp, name.trim());
         if (entity && entity.confidence > 0.8) {
             entityChosen = name;
             data.value = entity.value;
@@ -171,8 +171,14 @@ let handleMessageWithEntities = (message) => {
     return data;
 };
 
-function firstEntity(nlp, name) {
+// function firstEntity(nlp, name) {
+//     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+// }
+
+function firstTrait(nlp, name) {
+    // return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
     return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
+
 }
 
 // Handles messaging_postbacks events
