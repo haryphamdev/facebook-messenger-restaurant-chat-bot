@@ -38,8 +38,7 @@ let setUpMessengerPlatform = (PAGE_ACCESS_TOKEN) => {
                     }
                 ],
                 "whitelisted_domains": [
-                    "https://restaurant-bot-haryphamdev.herokuapp.com/"
-                ]
+                    process.env.SERVER_URL                ]
             };
 
             request({

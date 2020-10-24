@@ -4,7 +4,10 @@ require("dotenv").config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let getHomepage = (req, res) => {
-    return res.render("homepage.ejs");
+    let fbPageId = process.env.PAGE_ID;
+    return res.render("homepage.ejs",{
+        fbPageId
+    });
 };
 
 let getFacebookUserProfile = (req, res) => {
