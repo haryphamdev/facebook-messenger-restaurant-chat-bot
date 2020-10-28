@@ -112,6 +112,12 @@ let handleMessage = async (sender_psid, message) => {
 
     //handle text message
     let entity = handleMessageWithEntities(message);
+    console.log("---------------------------------")
+    console.log(entity)
+    console.log(entity.locale)
+    console.log("---------------------------------")
+
+
     let locale = entity.locale;
     await chatBotService.sendTypingOn(sender_psid);
     await chatBotService.markMessageSeen(sender_psid);
