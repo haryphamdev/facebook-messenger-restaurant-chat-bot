@@ -112,13 +112,8 @@ let handleMessage = async (sender_psid, message) => {
 
     //handle text message
     let entity = handleMessageWithEntities(message);
-    console.log("---------------------------------")
-    console.log(entity)
-    console.log(entity.locale)
-    console.log("---------------------------------")
-
-
     let locale = entity.locale;
+
     await chatBotService.sendTypingOn(sender_psid);
     await chatBotService.markMessageSeen(sender_psid);
 
@@ -182,9 +177,7 @@ let handleMessageWithEntities = (message) => {
 // }
 
 function firstTrait(nlp, name) {
-    // return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-    return nlp && nlp.entities && nlp.entities[name] && nlp.entities[name][0];
-
+    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
 // Handles messaging_postbacks events
