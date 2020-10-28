@@ -37,6 +37,7 @@ let setUpMessengerPlatform = (PAGE_ACCESS_TOKEN) => {
                         ]
                     }
                 ],
+
                 "whitelisted_domains": [
                     process.env.SERVER_URL                ]
             };
